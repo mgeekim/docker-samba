@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  samba:
+    container_name: samba
+    image: dperson/samba
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ${MOUNT}:/mnt
+      - ${DOCKER_BASE}/config:/etc/samba
+    environment:
+      - TZ=Asia/Seoul
+      - USER=${SAMBA_USER};${SAMBA_PASSWD};${SAMBA_UID};${SAMBA_GROUP}
